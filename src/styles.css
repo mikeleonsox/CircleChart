@@ -1,0 +1,38 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+}
+.bg-primaryOverride {
+  color: black;
+  background-color: white;
+  border-width: 2px;
+  border-style: solid;
+  border-color: blue;
+}
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+.nameText {
+  font-size: 18px;
+}
+.pilltext {
+  font-size: 22px;
+  padding: 10px;
+}
+.slashes {
+  letter-spacing: 3px;
+  padding: 10px;
+}
+.bold {
+  font-style: bold;
+}
