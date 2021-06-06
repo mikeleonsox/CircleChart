@@ -25,6 +25,35 @@
   <body onload="setRows()">
     <h1>Circle line</h1>
     <div style="text-align: center;">
+
+<div>
+    <fieldset>
+        <label for="r">R</label>
+        <input type="range" min="0" max="255" id="r" step="1" value="0">
+        <output for="r" id="r_out">0</output>
+      </fieldset>  
+      
+      <fieldset>
+        <label for="g">G</label>
+        <input type="range" min="0" max="255" id="g" step="1" value="0">
+        <output for="g" id="g_out">0</output>
+      </fieldset>
+      
+      <fieldset>
+        <label for="b">B</label>
+        <input type="range" min="0" max="255" id="b" step="1" value="0">
+        <output for="b" id="b_out">0</output>
+      </fieldset>  
+      
+      <output id="hex">#000000</output>
+      <div class="row">
+          <div class="col-lg-8 mx-auto">
+              <div style ="width:200px;" class="" id="colorSelected"></div>
+          </div>
+        </div>
+       
+</div>
+
     <div style="margin-bottom:20px">
         Large: <input type="text" value=15 data-row-number="0" data-circle-size="large" id="aa" onchange="setCirclePlacement(this)" />
       </div>
@@ -66,7 +95,7 @@
               {
                 title: "",
                 largeCirclePlacement: 15,
-                largeCircleColor:'red',
+                largeCircleColor:'#00a0c4',
                 smallCirclePlacement: 24.0,
                 smallCircleColor:'green',
                 flatLineStart: 2,
@@ -126,7 +155,7 @@
     //////////////
     // end default chart  /
     //////////////
-    var rows =[]
+    var rows =[];
     function setCirclePlacement(element) {
       var rowNumber = element.getAttribute('data-row-number');
       var value = element.value;
