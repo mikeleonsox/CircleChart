@@ -25,58 +25,125 @@
   <body onload="setRows()">
     <h1>Circle line</h1>
     <div style="text-align: center;">
+      <div>
+        <fieldset>
+          <label for="r">R</label>
+          <input type="range" min="0" max="255" id="r" step="1" value="0" />
+          <output for="r" id="r_out">0</output>
+        </fieldset>
 
-<div>
-    <fieldset>
-        <label for="r">R</label>
-        <input type="range" min="0" max="255" id="r" step="1" value="0">
-        <output for="r" id="r_out">0</output>
-      </fieldset>  
-      
-      <fieldset>
-        <label for="g">G</label>
-        <input type="range" min="0" max="255" id="g" step="1" value="0">
-        <output for="g" id="g_out">0</output>
-      </fieldset>
-      
-      <fieldset>
-        <label for="b">B</label>
-        <input type="range" min="0" max="255" id="b" step="1" value="0">
-        <output for="b" id="b_out">0</output>
-      </fieldset>  
-      
-      <output id="hex">#000000</output>
-      <div class="row">
+        <fieldset>
+          <label for="g">G</label>
+          <input type="range" min="0" max="255" id="g" step="1" value="0" />
+          <output for="g" id="g_out">0</output>
+        </fieldset>
+
+        <fieldset>
+          <label for="b">B</label>
+          <input type="range" min="0" max="255" id="b" step="1" value="0" />
+          <output for="b" id="b_out">0</output>
+        </fieldset>
+
+        <output id="hex">#000000</output>
+        <div class="row">
           <div class="col-lg-8 mx-auto">
-              <div style ="width:200px;" class="" id="colorSelected"></div>
+            <div style="width: 200px;" class="" id="colorSelected"></div>
           </div>
         </div>
-       
-</div>
+      </div>
 
-    <div style="margin-bottom:20px">
-        Large: <input type="text" value=15 data-row-number="0" data-circle-size="large" id="aa" onchange="setCirclePlacement(this)" />
+      <div style="margin-bottom: 20px;">
+        Large:
+        <input
+          type="text"
+          value="15"
+          data-row-number="0"
+          data-circle-size="large"
+          id="aa"
+          onchange="setCirclePlacement(this)"
+        />
       </div>
-       
-      <div style="margin-bottom:10px">
-        Small: <input type="text" value=24 id="zz" data-row-number="0"  data-circle-size="small" onchange="setCirclePlacement(this)" />
+
+      <div style="margin-bottom: 10px;">
+        Small:
+        <input
+          type="text"
+          value="24"
+          id="zz"
+          data-row-number="0"
+          data-circle-size="small"
+          onchange="setCirclePlacement(this)"
+        />
       </div>
-     
-      <div style="margin-bottom:10px">
-        large  Color: <input type="text" value='red' data-row-number="0" id="ss" data-circle-size="large" onchange="setCircleColor(this)" />
-        </div>
-        <div style="margin-bottom:10px">
-        small  Color: <input type="text" value='red' data-row-number="0" data-circle-size="small" id="zzz" onchange="setCircleColor(this)" />
-        </div>
-     
-      <div style="text-align: center;">
-        <div style="position:relative; top:250px;" id="id1">
+
+      <div style="margin-bottom: 10px;">
+        large Color:
+        <input
+          type="text"
+          value="red"
+          data-row-number="0"
+          id="ss"
+          data-circle-size="large"
+          onchange="setCircleColor(this)"
+        />
       </div>
-      <div style="text-align: center;">
-        <div style="position:relative; top:750px;" id="id2">
+      <div style="margin-bottom: 10px;">
+        small Color:
+        <input
+          type="text"
+          value="red"
+          data-row-number="0"
+          data-circle-size="small"
+          id="zzz"
+          onchange="setCircleColor(this)"
+        />
       </div>
     </div>
+    <hr />
+    <!--start chart area-->
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-12">C Hernandez</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">SwM% FB</div>
+          <div class="col-sm-6">0-0 SW% FB</div>
+        </div>
+
+        <div class="row">
+          <div id="pl1_1" class="col-sm-6"></div>
+          <div id="pl1_2" class="col-sm-6"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">SwM% FB</div>
+          <div class="col-sm-6">0-0 SW% FB</div>
+        </div>
+        <div class="row">
+          <div id="pl1_3" class="col-sm-6"></div>
+          <div id="pl1_4" class="col-sm-6"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">SwM% FB</div>
+          <div class="col-sm-6">0-0 SW% FB</div>
+        </div>
+        <div class="row">
+          <div id="pl1_5" class="col-sm-6"></div>
+          <div id="pl1_6" class="col-sm-6"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">SwM% FB</div>
+          <div class="col-sm-6">0-0 SW% FB</div>
+        </div>
+        <div class="row">
+          <div id="pl1_7" class="col-sm-6"></div>
+          <div id="pl1_8" class="col-sm-6"></div>
+        </div>
       </div>
+    </div>
   </body>
   <script>
     ////////////////////////
@@ -84,125 +151,156 @@
     ///////////////////////
     function createChart() {
       return {
-          $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-          config: {
-            view: {
-              stroke: "transparent"
+        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+        config: {
+          view: {
+            stroke: "transparent"
+          }
+        },
+        data: {
+          values: [
+            {
+              title: "",
+              largeCirclePlacement: 15,
+              largeCircleColor: "#00a0c4",
+              smallCirclePlacement: 24.0,
+              smallCircleColor: "green",
+              flatLineStart: 2,
+              flatLineEnd: 50
+            }
+          ]
+        },
+        facet: {
+          row: {
+            field: "title",
+            type: "ordinal",
+            header: null
+          }
+        },
+        spacing: 200,
+        spec: {
+          encoding: {
+            x: {
+              type: "quantitative",
+              axis: null,
+              title: null
             }
           },
-          data: {
-            values: [
-              {
-                title: "",
-                largeCirclePlacement: 15,
-                largeCircleColor:'#00a0c4',
-                smallCirclePlacement: 24.0,
-                smallCircleColor:'green',
-                flatLineStart: 2,
-                flatLineEnd: 50
-              }
-            ],
-          },
-          facet: {
-            row: {
-              field: "title",
-              type: "ordinal",
-              header: null
-            }
-          },
-          spacing: 200,
-          spec: {
-            encoding: {
-              x: {
-                type: "quantitative",
-                axis: null,
-                title: null
+          layer: [
+            {
+              mark: "line",
+              encoding: {
+                x: {
+                  field: "flatLineStart",
+                  type: "quantitative",
+                  scale: { zero: false }
+                },
+                x2: {
+                  field: "flatLineEnd",
+                  type: "quantitative"
+                }
               }
             },
-            layer: [
-              {
-                mark: "line",
-                encoding: {
-                  x: {
-                    field: "flatLineStart",
-                    type: "quantitative",
-                    scale: { zero: false }
-                  },
-                  x2: {
-                    field: "flatLineEnd",
-                    type: "quantitative"
-                  }
+            {
+              mark: { type: "circle" },
+              encoding: {
+                x: { field: "largeCirclePlacement" },
+                size: { value: 900 },
+                color: {
+                  type: "nominal",
+                  field: "largeCircleColor",
+                  scale: null
                 }
-              },
-              {
-                mark: { type: "circle"},
-                encoding: { x: { field: "largeCirclePlacement" }, size: { value: 900 },
-                color: {type: "nominal", field: "largeCircleColor", "scale": null}
-               }
-              },
-              {
-                mark: { type: "circle" },
-                encoding: { x: { field: "smallCirclePlacement", }, size: { value: 450 } ,
-                color: {type: "nominal", field: "smallCircleColor", "scale": null}
-              
               }
+            },
+            {
+              mark: { type: "circle" },
+              encoding: {
+                x: { field: "smallCirclePlacement" },
+                size: { value: 450 },
+                color: {
+                  type: "nominal",
+                  field: "smallCircleColor",
+                  scale: null
+                }
               }
-            ]
-          }
-        };
+            }
+          ]
+        }
+      };
     }
-    
+
     //////////////
     // end default chart  /
     //////////////
-    var rows =[];
+    var rows = [];
     function setCirclePlacement(element) {
-      var rowNumber = element.getAttribute('data-row-number');
+      var rowNumber = element.getAttribute("data-row-number");
       var value = element.value;
-      var isLargeChange = element.getAttribute('data-circle-size')==='large';
+      var isLargeChange = element.getAttribute("data-circle-size") === "large";
       console.log(isLargeChange);
-      if (isLargeChange){
+      if (isLargeChange) {
         rows[rowNumber].chart.data.values[0].largeCirclePlacement = value;
       } else {
         rows[rowNumber].chart.data.values[0].smallCirclePlacement = value;
       }
       setRow(rowNumber);
     }
-    
+
     function setCircleColor(element) {
-      var rowNumber = element.getAttribute('data-row-number');
+      var rowNumber = element.getAttribute("data-row-number");
       var value = element.value;
-      var isLargeChange = element.getAttribute('data-circle-size')==='large';
-      if (isLargeChange){
+      var isLargeChange = element.getAttribute("data-circle-size") === "large";
+      if (isLargeChange) {
         rows[rowNumber].chart.data.values[0].largeCircleColor = value;
       } else {
         rows[rowNumber].chart.data.values[0].smallCircleColor = value;
       }
       setRow(rowNumber);
     }
-    
+
     function setRow(rowNumber) {
-      vegaEmbed('#'+rows[rowNumber].chartId, rows[rowNumber].chart, { actions: false });
+      vegaEmbed("#" + rows[rowNumber].chartId, rows[rowNumber].chart, {
+        actions: false
+      });
     }
     function setRows() {
-      if (rows.length < 1){
-       rows = [
-      {
-        name: "Giolito, Lucas",
-        chartId:'id1',
-        chart:{},
-      },
-      {
-        name: "test, Lucas",
-        chartId:'id2',
-        chart:{},
+      if (rows.length < 1) {
+        rows = [
+          {
+            name: "Giolito, Lucas",
+            playerId: "pl1",
+            chartId: ["id1", "id2", "id3", "id4", "id5", "id6", "id7", "id8"],
+            chart: []
+          }
+        ];
       }
-    ];
+      rows.forEach((row) => {
+        row.chart.push(createChart());
+        console.log(row.chart[0].data.values);
+        vegaEmbed("#" + row.playerId + "_1", row.chart[0], { actions: false });
+
+        row.chart.push(createChart());
+        vegaEmbed("#" + row.playerId + "_2", row.chart[1], { actions: false });
+
+        row.chart.push(createChart());
+        vegaEmbed("#" + row.playerId + "_3", row.chart[2], { actions: false });
+
+        row.chart.push(createChart());
+        vegaEmbed("#" + row.playerId + "_4", row.chart[3], { actions: false });
+
+        row.chart.push(createChart());
+        vegaEmbed("#" + row.playerId + "_5", row.chart[4], { actions: false });
+
+        row.chart.push(createChart());
+        vegaEmbed("#" + row.playerId + "_6", row.chart[5], { actions: false });
+
+        row.chart.push(createChart());
+        vegaEmbed("#" + row.playerId + "_7", row.chart[6], { actions: false });
+
+        row.chart.push(createChart());
+        vegaEmbed("#" + row.playerId + "_8", row.chart[7], { actions: false });
+      });
     }
-    rows.forEach(row => {
-      row.chart = createChart();
-      vegaEmbed('#'+row.chartId, row.chart, { actions: false });
-     });
-     }
   </script>
 </html>
