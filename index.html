@@ -26,26 +26,35 @@
     <h1>Circle line</h1>
     <div style="text-align: center;">
     <div style="margin-bottom:20px">
-        Large: <input type="text" value=15 id="bigCircleInput" onchange="setLargeCircle()" />
+        Large: <input type="text" value=15 data-row-number="0" data-circle-size="large" id="aa" onchange="setCirclePlacement(this)" />
       </div>
+       
       <div style="margin-bottom:10px">
-        Small: <input type="text" value=24 id="smallCircleInput" onchange="setSmallCircle()" />
+        Small: <input type="text" value=24 id="zz" data-row-number="0"  data-circle-size="small" onchange="setCirclePlacement(this)" />
       </div>
+     
       <div style="margin-bottom:10px">
-          Color: <input type="text" value='red' id="largeCircleColorInput" onchange="setLargeCircleColor()" />
+        large  Color: <input type="text" value='red' data-row-number="0" id="ss" data-circle-size="large" onchange="setCircleColor(this)" />
         </div>
-      <div style="margin-bottom:10px">
-          Color: <input type="text" value='red' id="smallCircleColorInput" onchange="setSmallCircleColor()" />
+        <div style="margin-bottom:10px">
+        small  Color: <input type="text" value='red' data-row-number="0" data-circle-size="small" id="zzz" onchange="setCircleColor(this)" />
         </div>
      
       <div style="text-align: center;">
-        <div style="position:relative; top:250px;" id="chart"
+        <div style="position:relative; top:250px;" id="id1">
+      </div>
+      <div style="text-align: center;">
+        <div style="position:relative; top:750px;" id="id2">
       </div>
     </div>
       </div>
   </body>
   <script>
-    var chart=  {
+    ////////////////////////
+    //create default chart//
+    ///////////////////////
+    function createChart() {
+      return {
           $schema: "https://vega.github.io/schema/vega-lite/v5.json",
           config: {
             view: {
@@ -55,15 +64,15 @@
           data: {
             values: [
               {
-                title: "Satisfaction",
-                largeCircle: 15,
+                title: "",
+                largeCirclePlacement: 15,
                 largeCircleColor:'red',
-                smallCircle: 24.0,
+                smallCirclePlacement: 24.0,
                 smallCircleColor:'green',
                 flatLineStart: 2,
                 flatLineEnd: 50
               }
-            ]
+            ],
           },
           facet: {
             row: {
@@ -98,13 +107,13 @@
               },
               {
                 mark: { type: "circle"},
-                encoding: { x: { field: "largeCircle" }, size: { value: 900 },
+                encoding: { x: { field: "largeCirclePlacement" }, size: { value: 900 },
                 color: {type: "nominal", field: "largeCircleColor", "scale": null}
                }
               },
               {
                 mark: { type: "circle" },
-                encoding: { x: { field: "smallCircle", }, size: { value: 400 } ,
+                encoding: { x: { field: "smallCirclePlacement", }, size: { value: 450 } ,
                 color: {type: "nominal", field: "smallCircleColor", "scale": null}
               
               }
@@ -112,41 +121,59 @@
             ]
           }
         };
-    var rows = [
-      {
-        name: "Giolito, Lucas",
-        chart:chart
-       
-         
-      }
-    ];
-
-    //////////////
-    // end data  /
-    //////////////
-    function setLargeCircle() {
-      var largeCircleValue = document.getElementById("largeCircleInput").value;
-      rows[0].chart.data.values[0].largeCircle = largeCircleValue;
-      setRows();
-    }
-    function setSmallCircle() {
-      var smallCircleValue = document.getElementById("smallCircleInput").value;
-      rows[0].chart.data.values[0].smallCircle = smallCircleValue;
-      setRows();
-    }
-    function setLargeCircleColor() {
-      var value = document.getElementById("largeCircleColorInput").value;
-      rows[0].chart.data.values[0].largeCircleColor = value;
-      setRows();
-    }
-    function setSmallCircleColor() {
-      var value = document.getElementById("smallCircleColorInput").value;
-      rows[0].chart.data.values[0].smallCircleColor = value;
-      setRows();
     }
     
-    function setRows() {
-      vegaEmbed("#chart", rows[0].chart, { actions: false });
+    //////////////
+    // end default chart  /
+    //////////////
+    var rows =[]
+    function setCirclePlacement(element) {
+      var rowNumber = element.getAttribute('data-row-number');
+      var value = element.value;
+      var isLargeChange = element.getAttribute('data-circle-size')==='large';
+      console.log(isLargeChange);
+      if (isLargeChange){
+        rows[rowNumber].chart.data.values[0].largeCirclePlacement = value;
+      } else {
+        rows[rowNumber].chart.data.values[0].smallCirclePlacement = value;
+      }
+      setRow(rowNumber);
     }
+    
+    function setCircleColor(element) {
+      var rowNumber = element.getAttribute('data-row-number');
+      var value = element.value;
+      var isLargeChange = element.getAttribute('data-circle-size')==='large';
+      if (isLargeChange){
+        rows[rowNumber].chart.data.values[0].largeCircleColor = value;
+      } else {
+        rows[rowNumber].chart.data.values[0].smallCircleColor = value;
+      }
+      setRow(rowNumber);
+    }
+    
+    function setRow(rowNumber) {
+      vegaEmbed('#'+rows[rowNumber].chartId, rows[rowNumber].chart, { actions: false });
+    }
+    function setRows() {
+      if (rows.length < 1){
+       rows = [
+      {
+        name: "Giolito, Lucas",
+        chartId:'id1',
+        chart:{},
+      },
+      {
+        name: "test, Lucas",
+        chartId:'id2',
+        chart:{},
+      }
+    ];
+    }
+    rows.forEach(row => {
+      row.chart = createChart();
+      vegaEmbed('#'+row.chartId, row.chart, { actions: false });
+     });
+     }
   </script>
 </html>
