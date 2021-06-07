@@ -24,7 +24,7 @@
 
   <body onload="setRows()">
     <h1>Circle line</h1>
-    <div id="colorSelector" style="text-align: center;">
+    <div id="editFields" style="text-align: center; visibility: hidden;">
       <div>
         <fieldset>
           <label for="r">R</label>
@@ -83,7 +83,7 @@
         <input
           id="largeCircleColorEditForm"
           type="text"
-          value="red"
+          value="#00b7ef"
           data-row-number="0"
           data-circle-size="large"
           onchange="setCircleColor(this)"
@@ -94,12 +94,13 @@
         <input
           id="smallCircleColorEditForm"
           type="text"
-          value="red"
+          value="#00b7ef"
           data-row-number="0"
           data-circle-size="small"
           onchange="setCircleColor(this)"
         />
       </div>
+      <div><button onclick="">Done</button></div>
     </div>
     <hr />
     <!--start chart area-->
@@ -316,6 +317,7 @@
       });
     }
     function edit(rowNumber, chartNumber) {
+      document.getElementById("editFields").style.visibility = "visible";
       document
         .getElementById("largeCirclePlacementEditForm")
         .setAttribute("data-row-number", rowNumber);
