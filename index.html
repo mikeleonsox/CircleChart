@@ -19,11 +19,12 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
     <script src="/src/index.js"></script>
-    <link rel="stylesheet" href="/src/styles.css" />
+    <link rel="stylesheet" href="src/styles.css" />
   </head>
 
   <body onload="setRows()">
     <h1>Circle line</h1>
+
     <div id="editFields" style="text-align: center; visibility: hidden;">
       <div>
         <fieldset>
@@ -45,18 +46,24 @@
         </fieldset>
 
         <output id="hex">#000000</output>
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <div style="width: 200px;" class="" id="colorSelected"></div>
-          </div>
-        </div>
+
+        <div
+          style="
+            left: 45%;
+            width: 200px;
+            position: relative;
+            margin-bottom: 10px;
+          "
+          id="colorSelected"
+        ></div>
       </div>
 
       <div style="margin-bottom: 20px;">
-        Large:
+        Large loc.:
         <input
           id="largeCirclePlacementEditForm"
           type="text"
+          size="8"
           value="15"
           data-row-number="0"
           data-chart-number="0"
@@ -66,10 +73,11 @@
       </div>
 
       <div style="margin-bottom: 10px;">
-        Small:
+        Small loc.:
         <input
           id="smallCirclePlacementEditForm"
           type="text"
+          size="8"
           value="24"
           data-row-number="0"
           data-chart-number="1"
@@ -83,6 +91,7 @@
         <input
           id="largeCircleColorEditForm"
           type="text"
+          size="8"
           value="#00b7ef"
           data-row-number="0"
           data-circle-size="large"
@@ -94,13 +103,14 @@
         <input
           id="smallCircleColorEditForm"
           type="text"
+          size="8"
           value="#00b7ef"
           data-row-number="0"
           data-circle-size="small"
           onchange="setCircleColor(this)"
         />
       </div>
-      <div><button onclick="">Done</button></div>
+      <div><button onclick="clickCloseEditForm()">Close</button></div>
     </div>
     <hr />
     <!--start chart area-->
@@ -384,6 +394,10 @@
         playerId +
         '_8" class="col-sm-6"></div> </div> </div> </div>';
       document.getElementById(divId).innerHTML = playerArea;
+    }
+
+    function clickCloseEditForm() {
+      document.getElementById("editFields").style.visibility = "hidden";
     }
   </script>
 </html>
