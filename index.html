@@ -320,6 +320,12 @@
       document
         .getElementById("smallCirclePlacementEditForm")
         .setAttribute("data-chart-number", chartNumber);
+      document
+        .getElementById("largeCirclePlacementEditForm")
+        .setAttribute("data-row-number", rowNumber);
+      document
+        .getElementById("largeCirclePlacementEditForm")
+        .setAttribute("data-chart-number", chartNumber);
     }
     function loadPlayer(divId, rowIndex, playerName, playerId) {
       var playerArea =
@@ -335,15 +341,27 @@
         playerId +
         '_1" class="col-sm-12 col-lg-6"></div> <div id="' +
         playerId +
-        '_2" class="col-sm-12 col-lg-6"></div> </div> <div class="row chartTitle"> <div class="col-sm-6">SwM% Soft</div> <div class="col-sm-6">0-0 SW% Soft</div> </div> <div class="row"> <div id="' +
+        '_2" class="col-sm-12 col-lg-6"></div> </div> <div class="row chartTitle"> <div class="col-sm-6" onclick="edit(' +
+        (rowIndex - 1) +
+        ', 2)">SwM% Soft</div> <div class="col-sm-6" onclick="edit(' +
+        (rowIndex - 1) +
+        ', 3)">0-0 SW% Soft</div> </div> <div class="row"> <div id="' +
         playerId +
         '_3" class="col-sm-6"></div> <div id="' +
         playerId +
-        '_4" class="col-sm-6"></div> </div> <div class="row chartTitle"> <div class="col-sm-6">SwM% InZn</div> <div class="col-sm-6">0-0 SW% RISP</div> </div> <div class="row"><div id="' +
+        '_4" class="col-sm-6"></div> </div> <div class="row chartTitle"> <div class="col-sm-6" onclick="edit(' +
+        (rowIndex - 1) +
+        ', 4)">SwM% InZn</div> <div class="col-sm-6" onclick="edit(' +
+        (rowIndex - 1) +
+        ', 5)">0-0 SW% RISP</div> </div> <div class="row"><div id="' +
         playerId +
         '_5" class="col-sm-6"></div> <div id="' +
         playerId +
-        '_6" class="col-sm-6"></div> </div> <div class="row chartTitle"> <div class="col-sm-6">Chase%</div> <div class="col-sm-6">Chase% 2K</div> </div> <div class="row"> <div id="' +
+        '_6" class="col-sm-6"></div> </div> <div class="row chartTitle"> <div class="col-sm-6" onclick="edit(' +
+        (rowIndex - 1) +
+        ', 6)">Chase%</div> <div class="col-sm-6" onclick="edit(' +
+        (rowIndex - 1) +
+        ', 7)">Chase% 2K</div> </div> <div class="row"> <div id="' +
         playerId +
         '_7" class="col-sm-6"></div> <div id="' +
         playerId +
