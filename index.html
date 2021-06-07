@@ -59,7 +59,6 @@
           value="15"
           data-row-number="0"
           data-circle-size="large"
-          id="aa"
           onchange="setCirclePlacement(this)"
         />
       </div>
@@ -82,7 +81,6 @@
           type="text"
           value="red"
           data-row-number="0"
-          id="ss"
           data-circle-size="large"
           onchange="setCircleColor(this)"
         />
@@ -94,58 +92,22 @@
           value="red"
           data-row-number="0"
           data-circle-size="small"
-          id="zzz"
           onchange="setCircleColor(this)"
         />
       </div>
     </div>
     <hr />
     <!--start chart area-->
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="row">
-          <div class="col-sm-12 playerName">
-            <span style="color: black;">1</span> C Hernandez
-          </div>
-        </div>
-        <div class="row chartTitle">
-          <div class="col-sm-6">SwM% FB</div>
-          <div class="col-sm-6">0-0 SW% FB</div>
-        </div>
-
-        <div class="row">
-          <div id="pl1_1" class="col-sm-12 col-lg-6"></div>
-          <div id="pl1_2" class="col-sm-12 col-lg-6"></div>
-        </div>
-
-        <div class="row chartTitle">
-          <div class="col-sm-6">SwM% Soft</div>
-          <div class="col-sm-6">0-0 SW% Soft</div>
-        </div>
-        <div class="row">
-          <div id="pl1_3" class="col-sm-6"></div>
-          <div id="pl1_4" class="col-sm-6"></div>
-        </div>
-
-        <div class="row chartTitle">
-          <div class="col-sm-6">SwM% InZn</div>
-          <div class="col-sm-6">0-0 SW% RISP</div>
-        </div>
-        <div class="row">
-          <div id="pl1_5" class="col-sm-6"></div>
-          <div id="pl1_6" class="col-sm-6"></div>
-        </div>
-
-        <div class="row chartTitle">
-          <div class="col-sm-6">Chase%</div>
-          <div class="col-sm-6">Chase% 2K</div>
-        </div>
-        <div class="row">
-          <div id="pl1_7" class="col-sm-6"></div>
-          <div id="pl1_8" class="col-sm-6"></div>
-        </div>
-      </div>
-    </div>
+    <div id="player1"></div>
+    <hr />
+    <br />
+    <div id="player2"></div>
+    <hr />
+    <br />
+    <div id="player3"></div>
+    <hr />
+    <br />
+    <div id="player4"></div>
   </body>
   <script>
     ////////////////////////
@@ -267,16 +229,36 @@
       });
     }
     function setRows() {
+      chartIds = ["id1", "id2", "id3", "id4", "id5", "id6", "id7", "id8"];
       if (rows.length < 1) {
         rows = [
           {
-            name: "Giolito, Lucas",
+            playerName: "C Hernandez",
             playerId: "pl1",
-            chartId: ["id1", "id2", "id3", "id4", "id5", "id6", "id7", "id8"],
+            chartId: chartIds,
+            chart: []
+          },
+          {
+            playerName: "A Rosario",
+            playerId: "pl2",
+            chartId: chartIds,
+            chart: []
+          },
+          {
+            playerName: "J Ramirez",
+            playerId: "pl3",
+            chartId: chartIds,
+            chart: []
+          },
+          {
+            playerName: "E Rosario",
+            playerId: "pl4",
+            chartId: chartIds,
             chart: []
           }
         ];
       }
+      var rowIndex = 1;
       rows.forEach((row) => {
         row.chart.push(createChart());
         console.log(row.chart[0].data.values);
@@ -302,7 +284,40 @@
 
         row.chart.push(createChart());
         vegaEmbed("#" + row.playerId + "_8", row.chart[7], { actions: false });
+        console.log(rowIndex);
+        loadPlayer(
+          "player" + rowIndex,
+          rowIndex++,
+          row.playerName,
+          row.playerId
+        );
       });
+
+      function loadPlayer(divId, rowIndex, playerName, playerId) {
+        var playerArea =
+          '<div class="row"> <div class="col-sm-3"> <div class="row"> <div class="col-sm-12 playerName"> <span style="color: black;">' +
+          rowIndex +
+          " &nbsp;</span>" +
+          playerName +
+          '</div> </div> <div class="row chartTitle"> <div class="col-sm-6">SwM% FB</div> <div class="col-sm-6">0-0 SW% FB</div> </div> <div class="row"> <div id="' +
+          playerId +
+          '_1" class="col-sm-12 col-lg-6"></div> <div id="' +
+          playerId +
+          '_2" class="col-sm-12 col-lg-6"></div> </div> <div class="row chartTitle"> <div class="col-sm-6">SwM% Soft</div> <div class="col-sm-6">0-0 SW% Soft</div> </div> <div class="row"> <div id="' +
+          playerId +
+          '_3" class="col-sm-6"></div> <div id="' +
+          playerId +
+          '_4" class="col-sm-6"></div> </div> <div class="row chartTitle"> <div class="col-sm-6">SwM% InZn</div> <div class="col-sm-6">0-0 SW% RISP</div> </div> <div class="row"><div id="' +
+          playerId +
+          '_5" class="col-sm-6"></div> <div id="' +
+          playerId +
+          '_6" class="col-sm-6"></div> </div> <div class="row chartTitle"> <div class="col-sm-6">Chase%</div> <div class="col-sm-6">Chase% 2K</div> </div> <div class="row"> <div id="' +
+          playerId +
+          '_7" class="col-sm-6"></div> <div id="' +
+          playerId +
+          '_8" class="col-sm-6"></div> </div> </div> </div>';
+        document.getElementById(divId).innerHTML = playerArea;
+      }
     }
   </script>
 </html>
