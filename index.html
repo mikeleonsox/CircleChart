@@ -81,6 +81,7 @@
       <div style="margin-bottom: 10px;">
         large Color:
         <input
+          id="largeCircleColorEditForm"
           type="text"
           value="red"
           data-row-number="0"
@@ -91,6 +92,7 @@
       <div style="margin-bottom: 10px;">
         small Color:
         <input
+          id="smallCircleColorEditForm"
           type="text"
           value="red"
           data-row-number="0"
@@ -315,16 +317,29 @@
     }
     function edit(rowNumber, chartNumber) {
       document
+        .getElementById("largeCirclePlacementEditForm")
+        .setAttribute("data-row-number", rowNumber);
+      document
+        .getElementById("largeCirclePlacementEditForm")
+        .setAttribute("data-chart-number", chartNumber);
+      document
         .getElementById("smallCirclePlacementEditForm")
         .setAttribute("data-row-number", rowNumber);
       document
         .getElementById("smallCirclePlacementEditForm")
         .setAttribute("data-chart-number", chartNumber);
+
       document
-        .getElementById("largeCirclePlacementEditForm")
+        .getElementById("largeCircleColorEditForm")
         .setAttribute("data-row-number", rowNumber);
       document
-        .getElementById("largeCirclePlacementEditForm")
+        .getElementById("largeCircleColorEditForm")
+        .setAttribute("data-chart-number", chartNumber);
+      document
+        .getElementById("smallCircleColorEditForm")
+        .setAttribute("data-row-number", rowNumber);
+      document
+        .getElementById("smallCircleColorEditForm")
         .setAttribute("data-chart-number", chartNumber);
     }
     function loadPlayer(divId, rowIndex, playerName, playerId) {
