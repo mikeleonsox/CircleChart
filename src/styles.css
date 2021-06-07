@@ -1,5 +1,6 @@
 body {
   font-family: "Courier New", Courier, monospace;
+  margin: 20px;
 }
 .bg-primaryOverride {
   color: black;
@@ -35,6 +36,17 @@ a {
 }
 .bold {
   font-style: bold;
+}
+
+.playerName {
+  color: blue;
+  font-size: 24px;
+  font-weight: bold;
+}
+.chartTitle {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
 }
 /* colors slider */
 
